@@ -1,0 +1,169 @@
+:root {
+    --gold: #ffd700;
+    --dark: #111;
+    --glass: rgba(255,255,255,0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: "Bpmf Huninn", sans-serif;
+    background: var(--dark);
+    color: #fff;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 20px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Реклама */
+.ads-left, .ads-right { display: flex; flex-direction: column; gap: 20px; }
+.ad {
+    background: var(--glass);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.ad:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
+.ad img { width: 180px; height: 260px; object-fit: cover; display: block; }
+
+/* Контент */
+.content { display: flex; flex-direction: column; gap: 20px; padding: 20px; }
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--glass);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+}
+.profile img { width: 120px; height: 120px; border-radius: 10px; border: 3px solid var(--gold); }
+.profile h1 { color: var(--gold); font-size: 24px; margin-bottom: 8px; }
+.profile p { opacity: 0.9; margin-bottom: 5px; }
+
+.tg-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #0088cc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.tg-link:hover { background: #006699; transform: scale(1.05); }
+
+.block {
+    min-height: 300px;
+    border-radius: 15px;
+    padding: 30px;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 2px 2px 5px #000;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.8), transparent);
+}
+.block h1, .block p { position: relative; z-index: 1; }
+.block h1 { color: var(--gold); font-size: 28px; margin-bottom: 10px; }
+.block p { font-size: 16px; line-height: 1.5; }
+.block:hover { transform: scale(1.02); border-color: var(--gold); }
+
+/* QR */
+.qr-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: rgba(0,0,0,0.8);
+    color: var(--gold);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+}
+.qr-btn:hover { background: var(--gold); color: #000; transform: rotate(360deg); }
+
+.qr-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+.qr-modal.show { display: flex; }
+.qr-content {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    position: relative;
+}
+.qr-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #888;
+}
+.qr-close:hover { color: var(--gold); }
+
+/* Мобильная реклама */
+.mob-ad {
+    display: none;
+    position: fixed;
+    left: 0; right: 0;
+    z-index: 999;
+    background: #000;
+    text-align: center;
+    border: 1px solid var(--gold);
+}
+.mob-ad.top { top: 0; }
+.mob-ad.bottom { bottom: 0; }
+.mob-ad img { width: 100%; max-width: 400px; height: 120px; object-fit: cover; }
+
+/* ========== АДАПТИВ ========== */
+
+/* 1500px+: 2 рекламы слева */
+@media (min-width: 1500px) {
+    .wrapper { grid-template-columns: 400px 1fr 0; max-width: 1500px; margin: 0 auto; }
+    .ads-right { display: none; }
+    .ad { position: sticky; top: 20px; }
+    .ad img { width: 100%; height: auto; max-height: 500px; }
+}
+
+/* Телефон: реклама сверху/снизу */
+@media (max-width: 767px) {
+    .wrapper { display: block; padding: 0; background-attachment: scroll; }
+    .ads-left, .ads-right { display: none; }
+    .content { padding: 150px 15px; }
+    .mob-ad { display: block; }
+    .qr-btn { bottom: 140px; right: 10px; width: 50px; height: 50px; }
+    .profile { flex-direction: column; text-align: center; }
+    .block { min-height: 220px; padding: 20px; }
+    .block h1 { font-size: 22px; }
+    .block p { font-size: 14px; }
+}

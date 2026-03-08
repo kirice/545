@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Соловушки ОПГ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bpmf+Huninn&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <audio id="music" loop autoplay>
+        <source src="Jidanofu_-_Personal_76155402.mp3">
+    </audio>
+
+    <button class="qr-btn" onclick="toggleQR()">📱</button>
+    <div id="qr-modal" class="qr-modal">
+        <div class="qr-content">
+            <span class="qr-close" onclick="toggleQR()">&times;</span>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+
+    <div class="mob-ad top"><img src="0223_2.gif"></div>
+    <div class="mob-ad bottom"><img src="0223_5.gif"></div>
+
+    <div class="wrapper" style="background-image: url('beck.jpg');">
+        <div class="ads-left">
+            <a href="https://i.ytimg.com/vi/fDYEtulQt0w/maxresdefault.jpg" target="_blank">
+                <div class="ad"><img src="0223_2.gif"></div>
+            </a>
+            <div class="ad"><img src="0223_5.gif"></div>
+        </div>
+
+        <main class="content">
+            <div class="profile">
+                <img src="osn.png">
+                <div class="info">
+                    <h1>Илья «Свистун»</h1>
+                    <p>Я не продался, меня купили.</p>
+                    <p>Глава ОПГ Соловушки</p>
+                    <a href="https://t.me/SOLOVEY1994" class="tg-link">SOLOVEY1994</a>
+                </div>
+            </div>
+
+            <div class="block" style="background-image: url('1_block.jpg');"><h1>Луффи</h1><p>Резина<br>Много ест<br>Сам погибнет, но брата выручит</p></div>
+            <div class="block" style="background-image: url('2_block.jpg');"><h1>Зоро</h1><p>Бритва<br>Потерялся в сосне<br>За справедливость</p></div>
+            <div class="block" style="background-image: url('3_block.jpg');"><h1>Санджи</h1><p>Горящая нога<br>Искусный кок<br>Любит девушек</p></div>
+            <div class="block" style="background-image: url('4_block.jpg');"><h1>Нами</h1><p>Воровка<br>Искусный вор<br>Найдёт язык с врагом</p></div>
+            <div class="block" style="background-image: url('5_block.jpg');"><h1>Усоп</h1><p>Снайпер<br>Всегда рядом<br>Выдумщик</p></div>
+        </main>
+
+        <div class="ads-right"></div>
+    </div>
+
+    <script>
+        document.getElementById('music').volume = 0.1;
+        document.addEventListener('click', () => document.getElementById('music').play(), {once:true});
+
+        function toggleQR() {
+            const modal = document.getElementById('qr-modal');
+            const code = document.getElementById('qrcode');
+            if (modal.classList.contains('show')) {
+                modal.classList.remove('show');
+                code.innerHTML = '';
+            } else {
+                code.innerHTML = '';
+                new QRCode(code, {text: location.href, width: 200, height: 200});
+                modal.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
